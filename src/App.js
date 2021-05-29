@@ -13,26 +13,26 @@ class App extends React.Component {
   };
 
   handeldelete = (id) => {
-    const artistes = this.state.artistes.slice();
+    const artistes = [...this.state.artistes];
     const index = artistes.findIndex((x) => x.id === id);
     artistes.splice(index, 1);
-    this.setState({ artistes, artistes });
+    this.setState({ artistes });
   };
 
   handelSubmit = (event) => {
     event.preventDefault(); //eviter le rechargement de la page
+
     const id = new Date().getTime();
     const nom = this.state.nouveauArtiste;
 
-    const artiste = { id: id, nom: nom };
-    const artistes = this.state.artistes.slice();
-    artistes.push(artiste);
-    this.setState({ artistes: artistes, nouveauArtiste: "" });
+    const artistes = [...this.state.artistes];
+    artistes.push({ id, nom });
+
+    this.setState({ artistes, nouveauArtiste: "" });
   };
 
   handlerChange = (event) => {
-    const value = event.target.value;
-    this.setState({ nouveauArtiste: value });
+    this.setState({ nouveauArtiste: event.target.value });
   };
 
   render() {
