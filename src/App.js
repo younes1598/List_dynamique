@@ -20,14 +20,14 @@ class App extends React.Component {
   };
 
   handelSubmit = (event) => {
-    event.preventDefault();
+    event.preventDefault(); //eviter le rechargement de la page
     const id = new Date().getTime();
     const nom = this.state.nouveauArtiste;
 
     const artiste = { id: id, nom: nom };
     const artistes = this.state.artistes.slice();
     artistes.push(artiste);
-    this.setState({ artistes: artistes });
+    this.setState({ artistes: artistes, nouveauArtiste: "" });
   };
 
   handlerChange = (event) => {
